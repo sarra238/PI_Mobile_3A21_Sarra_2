@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="419.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AffichEventFOController">
+   <children>
+      <TableView fx:id="table_view" layoutX="10.0" layoutY="6.0" prefHeight="375.0" prefWidth="654.0">
+         <columns>
+            <TableColumn fx:id="nom_Evenement" prefWidth="84.0" text="Nom" />
+            <TableColumn fx:id="description" prefWidth="160.0" text="description" />
+            <TableColumn fx:id="type" prefWidth="58.0" text="type" />
+            <TableColumn fx:id="localisation" prefWidth="81.0" text="localisation" />
+            <TableColumn fx:id="dated" prefWidth="71.0" text="Date Debut" />
+            <TableColumn fx:id="datef" prefWidth="94.0" text="date Fin" />
+            <TableColumn fx:id="image" minWidth="0.0" prefWidth="104.0" />
+         </columns>
+      </TableView>
+      <AnchorPane layoutX="10.0" layoutY="381.0" prefHeight="38.0" prefWidth="609.0" style="-fx-background-color: #03224C;">
+         <children>
+            <Button fx:id="delete" layoutX="208.0" layoutY="7.0" mnemonicParsing="false" onAction="#delete" style="-fx-background-color: #03224C;" text="Supprimer Evenement" textFill="WHITE" />
+            <Button fx:id="stat" layoutX="342.0" layoutY="7.0" mnemonicParsing="false" onAction="#stat" style="-fx-background-color: #03224C;" text="Statistique Par type" textFill="#fffdfd" />
+            <Button fx:id="add" layoutY="7.0" mnemonicParsing="false" onAction="#addEvent" style="-fx-background-color: #03224C;" text="Ajout Evenemet" textFill="#f2f2f2" />
+            <Button fx:id="modifier" layoutX="93.0" layoutY="7.0" mnemonicParsing="false" onAction="#modifier" style="-fx-background-color: #03224C;" text="Modifier Evenement" textFill="WHITE" />
+            <Button layoutX="516.0" layoutY="11.0" mnemonicParsing="false" onAction="#details" text="details sur l'evenement" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

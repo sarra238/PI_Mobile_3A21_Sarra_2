@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AnnoncesClientController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="-5.0" prefHeight="405.0" prefWidth="607.0" style="-fx-background-color: #03224C;">
+         <children>
+            <AnchorPane layoutX="32.0" prefHeight="405.0" prefWidth="544.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <ImageView fitHeight="87.0" fitWidth="213.0" layoutX="176.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Ann.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="79.0" fitWidth="161.0" layoutX="444.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Anno.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
