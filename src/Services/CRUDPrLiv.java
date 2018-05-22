@@ -12,7 +12,6 @@ import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
-import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.util.Resources;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,38 +28,28 @@ public class CRUDPrLiv {
         ArrayList<Produit> listrdv = new ArrayList<>();
         ConnectionRequest con = new ConnectionRequest();
         con.setUrl("http://localhost/SoukI/web/app_dev.php/Produit/Affmobile");
-        con.addResponseListener(new ActionListener<NetworkEvent>() {
-            @Override
-            public void actionPerformed(NetworkEvent evt) {
-                //listTasks = getListTask(new String(con.getResponseData()));
-                JSONParser jsonp = new JSONParser();
-                
-                try {
-                    Map<String, Object> rdvs = jsonp.parseJSON(new CharArrayReader(new String(con.getResponseData()).toCharArray()));
-                    System.out.println(rdvs);
-                    //System.out.println(tasks);
-                    List<Map<String, Object>> list = (List<Map<String, Object>>) rdvs.get("listRendezVous");
-                    for (Map<String, Object> obj : list) {
-                        Produit r = new Produit();
-                        
-                        float id = Float.parseFloat(obj.get("id").toString());
-                        r.setId((int) id);
-                        
-                        r.setNomProduit(obj.get("NomProduit").toString());
-                        r.setRegion(obj.get("Region").toString());
-                        float prix = Float.parseFloat(obj.get("prix").toString());
-                        r.setPrix((int) prix);
-                      r.setDescription(obj.get("Description").toString());
-                      r.setNomImage(obj.get("nomImage").toString());
-                      
-                        
-                        
-                        listrdv.add(r);
-
-                    }
-                } catch (IOException ex) {
+        con.addResponseListener((NetworkEvent evt) -> {
+            JSONParser jsonp = new JSONParser();
+            
+            try {
+                Map<String, Object> rdvs = jsonp.parseJSON(new CharArrayReader(new String(con.getResponseData()).toCharArray()));
+                System.out.println(rdvs);
+                List<Map<String, Object>> list = (List<Map<String, Object>>) rdvs.get("listRendezVous");
+                for (Map<String, Object> obj : list) {
+                    Produit r = new Produit();
+                    
+                    float id = Float.parseFloat(obj.get("id").toString());
+                    r.setId((int) id);
+                    r.setNomProduit(obj.get("NomProduit").toString());
+                    r.setRegion(obj.get("Region").toString());
+                    float prix = Float.parseFloat(obj.get("prix").toString());
+                    r.setPrix((int) prix);
+                    r.setDescription(obj.get("Description").toString());
+                    r.setNomImage(obj.get("nomImage").toString());
+                    listrdv.add(r);
+                    
                 }
-
+            } catch (IOException ex) {
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
@@ -76,41 +65,37 @@ public class CRUDPrLiv {
         ArrayList<Produit> listcmd = new ArrayList<>();
         ConnectionRequest con = new ConnectionRequest();
         con.setUrl("http://localhost/SoukI/web/app_dev.php/Produit/Affcommandemobile");
-        con.addResponseListener(new ActionListener<NetworkEvent>() {
-            @Override
-            public void actionPerformed(NetworkEvent evt) {
-                //listTasks = getListTask(new String(con.getResponseData()));
-                JSONParser jsonp = new JSONParser();
-                
-                 try {
-                    Map<String, Object> rdvs = jsonp.parseJSON(new CharArrayReader(new String(con.getResponseData()).toCharArray()));
-                    System.out.println(rdvs);
-                    //System.out.println(tasks);
-                    List<Map<String, Object>> list = (List<Map<String, Object>>) rdvs.get("listRendez");
-                    for (Map<String, Object> obj : list) {
-                        Produit r = new Produit();
-                        
-                        float id = Float.parseFloat(obj.get("id").toString());
-                        r.setId((int) id);
-                        
-                        r.setNomProduit(obj.get("NomProduit").toString());
-                        r.setRegion(obj.get("Region").toString());
-                        float prix = Float.parseFloat(obj.get("prix").toString());
-                        r.setPrix((int) prix);
-                      r.setDescription(obj.get("Description").toString());
-                         float longitude = Float.parseFloat(obj.get("longitude").toString());
-                        r.setLongitude((int) longitude);
-                           float attitude = Float.parseFloat(obj.get("attitude").toString());
-                        r.setAttitude((int) attitude);
-                        r.setNomImage(obj.get("nomImage").toString());
-                        
-                        
-                        listcmd.add(r);
-
-                    }
-                } catch (IOException ex) {
+        con.addResponseListener((NetworkEvent evt) -> {
+            //listTasks = getListTask(new String(con.getResponseData()));
+            JSONParser jsonp = new JSONParser();
+            
+            try {
+                Map<String, Object> rdvs = jsonp.parseJSON(new CharArrayReader(new String(con.getResponseData()).toCharArray()));
+                System.out.println(rdvs);
+                //System.out.println(tasks);
+                List<Map<String, Object>> list = (List<Map<String, Object>>) rdvs.get("listRendez");
+                for (Map<String, Object> obj : list) {
+                    Produit r = new Produit();
+                    
+                    float id = Float.parseFloat(obj.get("id").toString());
+                    r.setId((int) id);
+                    
+                    r.setNomProduit(obj.get("NomProduit").toString());
+                    r.setRegion(obj.get("Region").toString());
+                    float prix = Float.parseFloat(obj.get("prix").toString());
+                    r.setPrix((int) prix);
+                    r.setDescription(obj.get("Description").toString());
+                    float longitude = Float.parseFloat(obj.get("longitude").toString());
+                    r.setLongitude((int) longitude);
+                    float attitude = Float.parseFloat(obj.get("attitude").toString());
+                    r.setAttitude((int) attitude);
+                    r.setNomImage(obj.get("nomImage").toString());
+                    
+                    
+                    listcmd.add(r);
+                    
                 }
-
+            } catch (IOException ex) {
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
@@ -164,36 +149,32 @@ public class CRUDPrLiv {
         ArrayList<livraison> listliv = new ArrayList<>();
         ConnectionRequest con = new ConnectionRequest();
         con.setUrl("http://localhost/SoukI/web/app_dev.php/Produit/livraison");
-        con.addResponseListener(new ActionListener<NetworkEvent>() {
-            @Override
-            public void actionPerformed(NetworkEvent evt) {
-                //listTasks = getListTask(new String(con.getResponseData()));
-                JSONParser jsonp = new JSONParser();
-                
-                 try {
-                    Map<String, Object> rdvs = jsonp.parseJSON(new CharArrayReader(new String(con.getResponseData()).toCharArray()));
-                    System.out.println(rdvs);
-                    //System.out.println(tasks);
-                    List<Map<String, Object>> list1 = (List<Map<String, Object>>) rdvs.get("listRendezVous");
-                    for (Map<String, Object> obj : list1) {
-                        livraison r = new livraison();
-                          float id = Float.parseFloat(obj.get("id").toString());
-                        r.setId((int) id);
-                        r.setNom(obj.get("Nom").toString());
-                        r.setPrenom(obj.get("prenom").toString());
-                          r.setAdresse(obj.get("adresse").toString());
-                           r.setNomProduit(obj.get("nomProduit").toString());
-                         float quantite = Float.parseFloat(obj.get("quantite").toString());
-                        r.setQuantite((int) quantite);
-                  
-       System.err.println(quantite);
-      listliv.add(r);
-                         System.err.println(listliv);
-
-                    }
-                } catch (IOException ex) {
+        con.addResponseListener((NetworkEvent evt) -> {
+            //listTasks = getListTask(new String(con.getResponseData()));
+            JSONParser jsonp = new JSONParser();
+            
+            try {
+                Map<String, Object> rdvs = jsonp.parseJSON(new CharArrayReader(new String(con.getResponseData()).toCharArray()));
+                System.out.println(rdvs);
+                //System.out.println(tasks);
+                List<Map<String, Object>> list1 = (List<Map<String, Object>>) rdvs.get("listRendezVous");
+                for (Map<String, Object> obj : list1) {
+                    livraison r = new livraison();
+                    float id = Float.parseFloat(obj.get("id").toString());
+                    r.setId((int) id);
+                    r.setNom(obj.get("Nom").toString());
+                    r.setPrenom(obj.get("prenom").toString());
+                    r.setAdresse(obj.get("adresse").toString());
+                    r.setNomProduit(obj.get("nomProduit").toString());
+                    float quantite = Float.parseFloat(obj.get("quantite").toString());
+                    r.setQuantite((int) quantite);
+                    
+                    System.err.println(quantite);
+                    listliv.add(r);
+                    System.err.println(listliv);
+                    
                 }
-
+            } catch (IOException ex) {
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
